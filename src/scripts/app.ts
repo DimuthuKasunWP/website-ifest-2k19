@@ -30,6 +30,7 @@ new FullPageJS('#fullpage', {
 });
 
 require('./smoke');
+// require('./email');
 
 const mobile_responsive_nav_show_btn: any = $.default("#mobile-responsive-btn");
 
@@ -57,4 +58,30 @@ $.default('#fullpage').click(e => {
 	if (mobile_responsive_nav_show_btn[0].lastElementChild.textContent == 'close') {
 		mobileResponsiveNavShowBtnClickAction()
 	}
+	
+
 });
+// $.default('#mail').click(e => {
+	
+// 	console.log("entered");
+//     const sgMail = require('@sendgrid/mail');
+
+//     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+//         console.log();
+//         const msg = {
+
+//         to: 'kasundimuthuwp@outlook.com',
+
+//         from: $.default('#from').val(),
+
+//         subject: $.default('#sender-name').val(),
+
+//         text: $.default('#content').val(),
+
+//         html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+
+//         };
+
+//     sgMail.send(msg);
+
+// });

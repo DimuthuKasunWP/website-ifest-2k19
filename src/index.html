@@ -7,6 +7,13 @@
     <title>UCSC - ISG</title>
     <link rel="stylesheet" type="text/css" href="app.min.css">
     <link rel="shortcut icon" href="./img/isaca-browser-logo.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init("user_5AY8slzcveJjmILxmVqZe");
+    })();
+    </script>
 </head>
 <body>
 <div id="smoke"></div>
@@ -228,30 +235,30 @@
                                         </div>
                                     </div>
                                     <div class="col-md-5">
-                                        <form action="" method="post">
+                                        <form id="form-email"   >
                                             <div class="form">
                                                 <div class="container-fluid form-inner">
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <p><input type="text" name="contact-name" id="contact-name"
+                                                            <p><input  type="text" name="name" id="inputName"
                                                                       placeholder="Name"></p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <p><input type="email" name="contact-email" id=""
+                                                            <p><input id="inputEmail" type="email" name="email" 
                                                                       placeholder="Email"></p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div lass="col-md-12">
-                                                            <p><textarea name="contact-message" id="contact-message"
+                                                            <p><textarea id="inputMessage" name="message" 
                                                                          cols="30" rows="7"
                                                                          placeholder="Message"></textarea>
                                                         </div>
                                                     </div>
                                                     <p>
-                                                        <button type="submit">Submit</button>
+                                                        <button id="mail"  type="button">Submit</button>
                                                     </p>
                                                 </div>
                                             </div>
@@ -363,5 +370,26 @@
     </section>
 </div>
 <script src="main.min.js" async></script>
+<script>
+$('#mail').click(function(e) {
+    console.log("entered");
+    var name    = document.getElementById('inputName');
+    name=$("#inputName").val();
+    var email   = document.getElementById('inputEmail');
+    email=$("#inputEmail").val();
+    var message = document.getElementById('inputMessage');
+    message=$("#inputMessage").val();
+
+    
+        var content={"message":message,"name":name,"email":email};
+        console.log(content);
+        emailjs.send("gmail", "template_V9Ko7dFs", content, "user_5AY8slzcveJjmILxmVqZe").then(function(response) {
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+       console.log('FAILED...', error);
+    });
+    
+  });
+</script>
 </body>
 </html>
